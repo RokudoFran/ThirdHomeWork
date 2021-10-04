@@ -429,7 +429,33 @@ namespace ThirdHomeWork
 
             if (a == 0 || b == 0)
             {
-                result = "Число A или B равно нулю";
+                if ( a == 0 )
+                {
+                    while ( b1 > 0)
+                    {
+                        j = b1 % 10;
+                        b1 = b1 / 10;
+
+                        if (a == j)
+                        {
+                            srav += 1;
+                        }
+                    }
+                }
+                else
+                {
+                    while (a1 > 0)
+                    {
+                        j = a1 % 10;
+                        a1 = a1 / 10;
+
+                        if (b1 == j)
+                        {
+                            srav += 1;
+                        }
+                    }
+                }
+
             }
             else
             {
