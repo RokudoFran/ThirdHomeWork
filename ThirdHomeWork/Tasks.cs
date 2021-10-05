@@ -47,34 +47,24 @@ namespace ThirdHomeWork
         //Пользователь вводит 1 число (A). Вывести все числа от 1 до 1000, которые делятся на A.
         public static int[] Еxercise2(int a)
         {
-            int lengthM = 0;
+            int lengthM = 1000 / a;
             int[] result = new int[lengthM];
             int n = 0;
 
-            if ( a == 0 )
+            if ((a == 0) || (Math.Abs(a) > 1000))
             {
-                throw new DivideByZeroException(" Число a равно нулю ");
+                throw new DivideByZeroException(" Число a равно нулю или больше 1000 по модулю ");
             }
             else
             {
-                if ( Math.Abs(a) < 1000 )
+                for (int i = 1; i <= 1000; i++)
                 {
-                    lengthM = a / 1000;
-
-                    for (int i = 1; i <= 1000; i++)
+                    if (i % a == 0)
                     {
-                        if (i % a == 0)
-                        {
-                            result[n] = i;
-                            n++;
-                        }
+                        result[n] = i;
+                        n++;
                     }
                 }
-                else
-                {
-                    throw new DivideByZeroException($" Число A = {a} больше 1000 ");
-                }
-                
             }
 
             return result;
@@ -108,7 +98,7 @@ namespace ThirdHomeWork
         //Пользователь вводит 1 число (A). Вывести наибольший делитель (кроме самого A) числа A.
         public static string Еxercise4(int a)
         {
-            int b;
+            int b = 0;
             int delitel = 0;
             string message = "";
 
@@ -138,8 +128,8 @@ namespace ThirdHomeWork
         //Пользователь вводит 2 числа (A и B). Вывести сумму всех чисел из диапазона от A до B, которые делятся без остатка на 7. (Учтите, что при вводе B может оказаться меньше A).
         public static string Еxercise5(int a, int b)
         {
-            int niz = 0;
-            int verh = 0;
+            int up = 0;
+            int down = 0;
             int c = 0;
             string message = "";
 
@@ -151,16 +141,16 @@ namespace ThirdHomeWork
             {
                 if (a < b)
                 {
-                    niz = a;
-                    verh = b;
+                    up = a;
+                    down = b;
                 }
                 else
                 {
-                    niz = b;
-                    verh = a;
+                    down = b;
+                    up = a;
                 }
 
-                for (int i = niz; i <= verh; i++)
+                for (int i = down; i <= up; i++)
                 {
                     if (i % 7 == 0)
                     {
@@ -253,9 +243,9 @@ namespace ThirdHomeWork
         //Пользователь вводит целое положительное число, которое является кубом целого числа N. Найдите число N методом половинного деления.
         public static string Еxercise8 (int a)
         {
-            int prav = a;
-            int lev = 0;
-            int centr = a / 2;
+            int right = a;
+            int left = 0;
+            int center = a / 2;
             string message = "";
 
             if ( ( a == 0 ) || ( a < 0 ))
@@ -264,27 +254,27 @@ namespace ThirdHomeWork
             }
             else
             {
-                while (centr * centr * centr != a)
+                while (center * center * center != a)
                 {
-                    if (lev < prav)
+                    if (left < right)
                     {
-                        centr = (prav + lev) / 2;
-                        if (centr * centr * centr > a)
+                        center = (right + left) / 2;
+                        if (center * center * center > a)
                         {
-                            prav = centr;
+                            right = center;
                         }
                         else
                         {
-                            lev = centr;
+                            left = center;
                         }
 
-                        message = $" Число А = {a} является кубом числа {centr}";
+                        message = $" Число А = {a} является кубом числа {center}";
                     }
                     else
                     {
-                        centr = lev;
-                        centr = (prav + lev) / 2;
-                        message = $" Число А = {a} является кубом числа {centr}";
+                        center = left;
+                        center = (right + left) / 2;
+                        message = $" Число А = {a} является кубом числа {center}";
                     }
                 }
             }
@@ -295,8 +285,8 @@ namespace ThirdHomeWork
         //Пользователь вводит 1 число. Найти количество нечетных цифр этого числа.
         public static string Еxercise9(int a)
         {
-            int nechet = 0;
-            int chet = 0;
+            int even = 0;
+            int odd = 0;
             string message = "";
 
             if (a == 0)
@@ -309,17 +299,20 @@ namespace ThirdHomeWork
                 {
                     if (a % 2 != 0)
                     {
-                        nechet++;
+                        odd++;
                         a = a / 10;
-
-                        message = $" Кол-во нечетных чисел числа A = {a} равно {nechet}";
                     }
                     else
                     {
-                        chet++;
+                        even++;
                         a = a / 10;
                     }
                 }
+            }
+
+            if ( odd > 0)
+            {
+                message = $" Кол-во нечетных чисел числа A = {a} равно {odd}";
             }
 
             return message;
@@ -368,8 +361,8 @@ namespace ThirdHomeWork
         public static string Еxercise11(int a)
         {
             int n = 0;
-            int nechet = 0;
-            int chet = 0;
+            int even = 0;
+            int odd = 0;
 
             string message = "";
 
@@ -389,27 +382,27 @@ namespace ThirdHomeWork
                         n = tmp % 10;
                         if (n % 2 == 0)
                         {
-                            chet = +n;
+                            even = +n;
                         }
                         else
                         {
-                            nechet = +n;
+                            odd = +n;
                         }
                         tmp = tmp / 10;
                         n = 0;
                     }
 
-                    if (chet > nechet)
+                    if (even > odd)
                     {
                         message = " " + i; 
                         
-                        nechet = 0;
-                        chet = 0;
+                        odd = 0;
+                        even = 0;
                     }
                     else
                     {
-                        nechet = 0;
-                        chet = 0;
+                        odd = 0;
+                        even = 0;
                     }
                 }
             }
