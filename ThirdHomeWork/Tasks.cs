@@ -98,7 +98,6 @@ namespace ThirdHomeWork
         //Пользователь вводит 1 число (A). Вывести наибольший делитель (кроме самого A) числа A.
         public static string Еxercise4(int a)
         {
-            int b = 0;
             int delitel = 0;
             string message = "";
 
@@ -108,15 +107,17 @@ namespace ThirdHomeWork
             }
             else
             {
-                for (int i = 2; i * 2 < a; i++)
+                for (int i = a / 2; i > 1; i--)
                 {
                     if (a % i == 0)
                     {
-                        b = a / i;
-                        if (b > delitel)
+
+                        if (i > delitel)
                         {
-                            delitel = b;
-                            message = $" Наибольшим делителем числа А = {a}, кроме самого числа А, является число равное {b}";
+                            delitel = i;
+                            message = $" Наибольшим делителем числа А = {a}, кроме самого числа А, является число равное {delitel}";
+
+                            break;
                         }
                     }
                 }
