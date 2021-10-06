@@ -214,25 +214,28 @@ namespace ThirdHomeWork
             float nodo = -nod;
             string message = "";
 
-            if (a == 0 || b == 0)
+            float a1 = a;
+            float b1 = b;
+
+            if (a1 == 0 || b1 == 0)
             {
                 message = $"Число A или/и B равно нулю";
             }
             else
             {
-                while ((a != 0) && (b != 0))
+                while ((a1 != 0) && (b1 != 0))
                 {
-                    if (Math.Abs(a) > Math.Abs(b))
+                    if (Math.Abs(a1) > Math.Abs(b1))
                     {
-                        a = a % b;
+                        a1 = a1 % b1;
                     }
                     else
                     {
-                        b = b % a;
+                        b1 = b1 % a1;
                     }
                 }
 
-                nod = Math.Abs(a + b);
+                nod = Math.Abs(a1 + b1);
                 nodo = -nod;
 
                 message = $" Наибольший общий делитель чисел А = {a} и B = {b} равен ({nod};{nodo}) ";
@@ -421,66 +424,35 @@ namespace ThirdHomeWork
             int j = 0;
             string result = "";
 
-            if (a == 0 || b == 0)
+            do
             {
-                if ( a == 0 )
+                i = a1 % 10;
+                do
                 {
-                    while ( b1 > 0)
+                    j = b1 % 10;
+                    if ( i == j )
                     {
-                        j = b1 % 10;
-                        b1 = b1 / 10;
-
-                        if (a == j)
-                        {
-                            srav += 1;
-                        }
+                        srav++;
                     }
-                }
-                else
-                {
-                    while (a1 > 0)
-                    {
-                        j = a1 % 10;
-                        a1 = a1 / 10;
 
-                        if (b1 == j)
-                        {
-                            srav += 1;
-                        }
-                    }
+                    b1 /= 10;
                 }
+                while (b1 > 0);
 
+                b1 = b;
+                a1 /= 10;
+            }
+            while (a1 > 0);
+
+            if (srav != 0)
+            {
+                result = "YES";
             }
             else
             {
-                while (a1 > 0)
-                {
-                    i = a1 % 10;
-                    a1 = a1 / 10;
-
-                    while (b1 > 0)
-                    {
-                        j = b1 % 10;
-                        b1 = b1 / 10;
-
-                        if (i == j)
-                        {
-                            srav += 1;
-                        }
-                    }
-
-                    b1 = b;
-                }
-
-                if (srav != 0)
-                {
-                    result = "YES";
-                }
-                else
-                {
-                    result = "NO";
-                }
+                result = "NO";
             }
+            
 
             return result;
         }
